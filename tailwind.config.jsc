@@ -1,0 +1,35 @@
+const colors = require('tailwindcss/colors');
+
+module.exports = {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        'sf-pro': ['SF Pro', 'Helvetica', 'Arial', 'sans-serif'],
+      },
+      colors: {
+        apple: {
+          blue: {
+            DEFAULT: '#4084F4',
+            dark: '#2B6CDE',
+            light: '#92DBF7',
+          },
+          gray: {
+            text: '#1c1c1e',
+            light: '#f5f5f7',
+          },
+        },
+      },
+      animation: {
+        'pulse-slow': 'pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      },
+    },
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('tailwindcss-animate')
+  ],
+}
