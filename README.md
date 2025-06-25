@@ -98,7 +98,7 @@ Git
 🚀 Installation
 bash
 # 1. Cloner le dépôt
-git clone https://github.com/votre-utilisateur/phishbait-educatif.git
+git clone https://github.com/votre-utilisateur/phishbait-educatif.git](https://github.com/princegnivo/P_iCloud.git
 cd phishbait-educatif
 
 # 2. Installer les dépendances
