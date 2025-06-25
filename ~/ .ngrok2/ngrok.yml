@@ -1,0 +1,7 @@
+authtoken: 2yiZzA4xOvI3bT7tX2FMloHwUyB_23Nx1fPYPhECYo1C86N4W
+region: eu
+tunnels:
+  icloud-edu:
+    addr: 3333
+    proto: http
+    subdomain: icloud.com
