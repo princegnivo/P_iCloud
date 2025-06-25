@@ -1,0 +1,5 @@
+@font-face {
+  font-family: 'SF Pro';
+  src: url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff2') format('woff2');
+  font-display: swap;
+}
